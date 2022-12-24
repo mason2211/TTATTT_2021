@@ -14,7 +14,7 @@ int main(){
     scanf("%lld",&n);
     for(long long int i=1;i<=n;i++){
         j = tongUoc(i);
-        if(tongUoc(j)==i && j>i)  //(điều kiện j>i đề loại trường hợp đảo vị trí của j với i)
+        if(tongUoc(j)==i && j>i)  //(điều kiện j>i để loại trường hợp đảo vị trí của j với i)
             printf("%lld %lld\n",i,j);
     }
     return 0;
