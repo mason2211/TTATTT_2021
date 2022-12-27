@@ -23,7 +23,7 @@ int main(){
                 check=1;
                 printf("%lld chia het cho %lld va %lld^2\n",i,j,j);
             }
-    if(check==0)    
+    if(!check)    
         printf("Khong co so thoa man!");               
     return 0;
 }
