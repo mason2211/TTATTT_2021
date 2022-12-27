@@ -3,23 +3,10 @@ một số nguyên tố. Hãy viết chương trình đếm số lượng các s
 [A,B] cho trước nhập từ bàn phím.*/
 #include <stdio.h>
 #include <math.h>
-int isPrime(long long int n){
-    if (n <= 1)
-        return 0;
-    if (n == 2 || n == 3)
-        return 1;
-    if (n % 2 == 0 || n % 3 == 0)
-        return 0;
-    for (long int i = 5; i <= sqrt(n); i+=6)
-        if (n % i == 0 || n % (i + 2) == 0)
-            return 0;
-    return 1;
-}
-
-int countPrime(long long int n){
+long long int countPrime(long long int n, long long int check[n]){
     int d = 0;
     for(long int i = 2; i<n;i++)
-        if(isPrime(i)==1)
+        if(check[i]==1)
             d+=1;
     return d;
 }
@@ -30,11 +17,18 @@ int main(){
         printf("Nhap 0 <= A < B!\n");
         scanf("%lld%lld", &a, &b);
     }
+    long long int check[b+1]; //Sàng NT
+    for(long long int i = 2 ; i < b ; i++)
+        check[i]=1;
+    for(long long int i = 2 ; i < b ; i++) 
+        if(check[i]==1)
+            for(long long int j = 2*i; j<b; j+=i)
+                check[j]=0;
     for (long long int x = a; x < b; x++)
-        if(isPrime(countPrime(x))==1){
+        if(check[countPrime(x,check)]==1){
             d++;
-            //printf("\nSo %ld la sieu nguyen to vi co %ld SNT nho hon %ld",x,countPrime(x),x);
+            //printf("\nSo %lld la sieu nguyen to vi co %lld SNT nho hon %lld",x,countPrime(x,check),x);
         }
-    printf("%lld",d);
+    printf("So cac so sieu nguyen to trong khoang tren la: %lld",d);
     return 0;
 }
