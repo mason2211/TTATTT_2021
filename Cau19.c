@@ -35,8 +35,8 @@ int main()
             printf("x = %ld\n", x); 
             check=1;
         }             
-        if (check==0)
-            printf("Khong co x thoa man!");
     }
+    if (check==0)
+        printf("Khong co x thoa man!");
     return 0;
 }
