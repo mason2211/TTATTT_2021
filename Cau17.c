@@ -17,7 +17,7 @@ int isPrime(long long int n){
     return 1;
 }
 int main(){
-    long int n, r=100;
+    long int n, r=100,check=0;;
     scanf("%ld",&n);
     srand((int)time(0));
     long int A = (rand()%r+1);
@@ -27,10 +27,10 @@ int main(){
     for(long int x=0;x<n;x++){
         if(isPrime(A*x*x + B*x + C)==1){
             printf("x = %ld",x);
+            check=1;
             break;
         }     
-        else if(x==n-1 && isPrime(A*x*x + B*x + C)!=1)
-                printf("Khong co x thoa man!");
     }
+    if(!check) printf("Khong co x thoa man!!!");
     return 0;
 }
