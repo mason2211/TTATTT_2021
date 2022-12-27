@@ -17,18 +17,21 @@ int isPrime(long long int n){
     return 1;
 }
 int main(){
-    long int n,r;
+    long int n,r,check=0;
     scanf("%ld",&n);
     long int a[n];
     srand((int)time(0));
     for(long int i = 0; i < n; ++i){
-        a[i] = (rand()%r+1);
+        a[i] = rand();
         printf("%ld ",a[i]);
     }
     printf("\n");
     for(long int i = 0; i < n; ++i){
-        if(isPrime(a[i])==1)
+        if(isPrime(a[i])==1){
             printf("%ld ",a[i]);
+            check=1;
+        }
     }
+    if(!check) printf("Khong co SNT nao trong day tren");
     return 0;
 }
