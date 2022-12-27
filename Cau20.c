@@ -27,7 +27,7 @@ int main(){
         for(int i=m;i<n;i++){
             for(int j = i*2;j<n;j++)
                 if(gcd(i,j)==D)
-                    printf("\n%d va %d\n%d va %d",i,j,j,i);
+                    printf("\n%d va %d\n%d va %d\n",i,j,j,i);
             if(i==n-1)
                 printf("\nHet!"); 
     }       
