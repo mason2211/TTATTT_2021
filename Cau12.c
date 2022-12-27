@@ -2,34 +2,31 @@
 nhỏ hơn hoặc bằng N (với N được nhập vào từ bàn phím).*/
 #include <stdio.h>
 #include <math.h>
-int isPrime(long long int n){
-    if (n <= 1)
-        return 0;
-    if (n == 2 || n == 3)
-        return 1;
-    if (n % 2 == 0 || n % 3 == 0)
-        return 0;
-    for (long int i = 5; i <= sqrt(n); i+=6)
-        if (n % i == 0 || n % (i + 2) == 0)
-            return 0;
-    return 1;
-}
 int main(){
-    long int n, t=0, x, i, j;
-    scanf("%ld",&n);
-    long int pr[n];
+    long long int n, t=0, x, i, j;
+    scanf("%lld",&n);
+    long long int check[n+1]; //Sàng NT
+    for(long long int i = 2 ; i <= n ; i++)
+        check[i]=1;
+    for(long long int i = 2 ; i <= n ; i++) 
+        if(check[i]==1)
+            for(long long int j = 2*i; j<=n; j+=i)
+                check[j]=0;
+    long long int pr[n];
     for(i=2;i<=n;i++)
-        if(isPrime(i)==1)
+        if(check[i]==1)
             pr[t++]=i;
     for(i=0;i<=t-3;i++){
         x = pr[i] + pr[i+1] + pr[i+2] + pr[i+3];
-        if(isPrime(x)==1 && x<=n){
-            printf("4 SNT can tim la %ld %ld %ld %ld", pr[i], pr[i+1], pr[i+2], pr[i+3]);
-            break;
-        }      
-        else if (x>n){
+        if (x>n){
             printf("Khong co 4 SNT lien tiep thoa man de bai!");
             break;
         }
-    }  
+        else{
+            if(check[x]==1){
+                printf("4 SNT can tim la %lld %lld %lld %lld", pr[i], pr[i+1], pr[i+2], pr[i+3]);
+                break;
+            }         
+        }  
+    }
 }
