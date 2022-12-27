@@ -10,12 +10,15 @@ long long int tongUoc(long long int a){
     return d;
 }
 int main(){
-    long long int n,j;
+    long long int n,j, check=0;
     scanf("%lld",&n);
     for(long long int i=1;i<=n;i++){
         j = tongUoc(i);
-        if(tongUoc(j)==i && j>i)  //(điều kiện j>i để loại trường hợp đảo vị trí của j với i)
+        if(tongUoc(j)==i && j>i && j<n){ // (a>i) để loại trường hợp i j đảo vị trí cho nhau
             printf("%lld %lld\n",i,j);
+            check=1;
+        }
     }
+    if(!check) printf("Khong co cap so than thiet < %lld",n);
     return 0;
 }
