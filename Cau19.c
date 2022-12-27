@@ -36,7 +36,7 @@ int main()
             check=1;
         }             
     }
-    if (check==0)
+    if (!check)
         printf("Khong co x thoa man!");
     return 0;
 }
