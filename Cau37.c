@@ -1,54 +1,47 @@
 /*Câu 37. Lập trình tìm kiếm xâu S1 trong xâu S2 theo thuật toán Knutt-Morris-Patt. Trong trường
 hợp nào thì thuật toán Boyer-Moore được xem là cải tiến hơn thuật toán tìm kiếm vét cạn?*/
-#include<stdio.h>
-#include<string.h>
-void computeLPSarray(char* P,int M,int* lps){
-    int len = 0;
-    lps[0]=0;
-    int i = 1;
-    while(i<M) {
-        if(P[i] == P[len]){
-            len++;
-            lps[i]=len;
-            i++;
-        }
-        else {
-            if(len!=0)
-                len = lps[len-1];
-            else{
-                lps[i]=0;
-                i++;
-            }
-        }
-    }
+#include <stdio.h>
+#include <string.h>
+int soSanhChuoi(char P[], int j, int i){
+    int check = 0;
+    for (int x = 0; x < i; x++)   // kiểm tra chuỗi tiền tố với hậu tố
+        if (P[x] == P[j - i + x]) // kiểm tra từng kí tự lần lượt của chuỗi tiền tố với hậu tố
+            check++;
+    if (check == i)
+        return 1;
+    return 0;
 }
-
-int main()
-{
+int kiemTra(char P[], int j){   // kích thước của tiền tố = hậu tố
+    for (int i = j - 1; i >= 0; i--)
+        if (soSanhChuoi(P, j, i) == 1)
+            return i;
+    return 0;
+}
+void failureFunction(char P[], int F[]){
+    F[0] = -1;
+    for (int j = 1; j < strlen(P); j++)
+        F[j] = kiemTra(P, j);
+}
+int main(){
     char T[1000]; char P[1000];
     gets(T); gets(P);
-    int M = strlen(P);
-    int N = strlen(T);
-    int lps[M];
-    computeLPSarray(P,M,lps);
-    int i = 0, j = 0, check=0;
-    while(i<N){
-        if(P[j]==T[i]){
-            i++;
-            j++;
-        }
-        if(j==M){
-            printf("P co xuat hien trong T, co vi tri bat dau la %d",i-j);
-            j = lps[j-1];
-            check=1;
-            break;
-        }
-        else if(i<N && P[j]!=T[i]){
-            if(j==0)
-                i=i+1;
-            else j=lps[j-1];
+    int F[strlen(P)];
+    failureFunction(P, F);
+    int i = 0, j = 0, check = 0;
+    while(i <= strlen(T)-strlen(P)){    // khi i chưa chạy hết độ dài của T-P
+        int inew = i+j;
+        if(T[inew] == P[j]){
+            inew++; j++;
+            if(j == strlen(P)){     //j tăng đến hết P
+                printf("P co xuat hien trong T, tai vi tri %d", i);
+                check=1;
+                break;
+            }
+        }  
+        else{   //cập nhật gtri mới của i và j
+            i = i + j - F[j]; 
+            j = F[j] == -1 ? 0 : F[j];
         }
     }
-    if(check==0)
-        printf("P co xuat hien trong T!");
+    if(check == 0) printf("P khong xuat hien trong T!!");
 }
