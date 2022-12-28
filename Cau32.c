@@ -43,18 +43,15 @@ long long int modNghichDao(long long int a, long long int b) {
     }
     return mod(x1, a);
 }
-long long int modmod(long long int a, long long int b, long long int c){
-    return ((a%c)*(b%c))%c;
-}
 long long int binhPhuongCoLap(long long int a, long long int k, long long int n){
     long long int b = 1, A = a;
     if (k % 2 == 1)
         b = a;
     k/=2;
     while (k > 0){
-        A = modmod(A,A,n);
+        A = (A*A)%n;
         if (k % 2 == 1)
-            b = modmod(b,A,n);
+            b = (b*A)%n;
         k/=2;
     }
     return b;
