@@ -17,9 +17,6 @@ int isPrime(long long int n){
             return 0;
     return 1;
 }
-long long int mod(long long int a, long long int b, long long int c){
-    return ((a%c)*(b%c))%c;
-}
 int main(){
     long long int X = 170443, x1, x2, k, n = 123456, a=170443;
     for(long long int i=X;i>1;i--)
@@ -34,16 +31,15 @@ int main(){
         }
     k = (X-x1)<(x2-X)?x1:x2;
     printf("SNT gan voi %lld nhat la: %lld",X,k);
-
     //a = SBD (170443), tính a^k mod n
     long long int b = 1, A = a, k1=k;
     if (k1 % 2 == 1)
         b = a;
     k1/=2;
     while (k1 > 0){
-        A = mod(A,A,n);
+        A = (A*A)%n;
         if (k1 % 2 == 1)
-            b = mod(b,A,n);
+            b = (b*A)%n;
         k1/=2;
     }
     printf("\nGia tri cua %lld^%lld mod %lld la: %lld",a,k,n,b);
