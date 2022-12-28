@@ -28,11 +28,11 @@ int main(){
         a = 2+rand()%(n+1-4);
         int r = nhanBinhPhuongCoLap(a,n-1,n);
         if(r!=1){
-            printf("Co so a=%d: Hop so\n",a);
+            //printf("Co so a=%d: Hop so\n",a);
             break;
         } 
         else {
-            printf("Co so a=%d: Nguyen to\n",a);
+            //printf("Co so a=%d: Nguyen to\n",a);
             check = 1;
         }
     }
