@@ -35,7 +35,9 @@ int main(){
     }   
     printf("\n");  
     for(long long int i=0;i<n-1;i++)
-        for(long long int j=i+1;j<n;j++)
-            if(isPrime(GCD(a[i],a[j]))==1)
-                printf("a[%lld], a[%lld] , GCD(a[%lld],a[%lld]) = %lld\n",i,j,i,j,GCD(a[i],a[j]));
+        for(long long int j=i+1;j<n;j++){
+            long long int gcd = GCD(a[i],a[j]);
+            if(isPrime(gcd)==1)
+                printf("a[%lld], a[%lld] , GCD(a[%lld],a[%lld]) = %lld\n",i,j,i,j,gcd);
+        }
 }
