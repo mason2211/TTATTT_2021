@@ -17,6 +17,18 @@ long long int nhanBinhPhuongCoLap(long long int a, long long int k, long long in
     }
     return b;
 }
+int isPrime(long long int n){
+    if (n <= 1)
+        return 0;
+    if (n == 2 || n == 3)
+        return 1;
+    if (n % 2 == 0 || n % 3 == 0)
+        return 0;
+    for (long long int i = 5; i <= sqrt(n); i+=6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return 0;
+    return 1;
+}
 int Miller_Rabin(long long int a, long long int n) {
     long long int x = n - 1, s=0, r;
     while (x % 2 == 0) {
@@ -26,7 +38,7 @@ int Miller_Rabin(long long int a, long long int n) {
     r = x;
     long long int y = nhanBinhPhuongCoLap(a, r, n);
     if (y != 1 && y != n - 1) {
-        int j = 1;
+        long long int j = 1;
         while (j <= s - 1 && y != n - 1) {
             y = (y*y)%n;
             if (y == 1) 
@@ -38,18 +50,6 @@ int Miller_Rabin(long long int a, long long int n) {
     }
     return 1;
 }
-int isPrime(long long int n){
-    if (n <= 1)
-        return 0;
-    if (n == 2 || n == 3)
-        return 1;
-    if (n % 2 == 0 || n % 3 == 0)
-        return 0;
-    for (long int i = 5; i <= sqrt(n); i+=6)
-        if (n % i == 0 || n % (i + 2) == 0)
-            return 0;
-    return 1;
-}
 int testMiller_Rabin(long long int n, long long int t){
     long long int a, check=0;
     while(t-->0){
@@ -59,46 +59,39 @@ int testMiller_Rabin(long long int n, long long int t){
             return 0;
         else 
             check = 1;
-        a++;
     }
     if(check==1)
         return 1;
 }
 long long int RANDOMSEARCH(long long int k, long long int t){
-    long long int n, snt, B;
-    long long int tmp = pow(2,k)-1;
-    b1:while(1){     
-        n = rand()%(tmp+1);
-        B=rand();
-        while (1){
-            snt = rand()%(B+1);
-            if(isPrime(snt)!=1)
-                snt = rand()%(B+1);
-            else break;
-        }    
-        if(n%snt==0)
-            goto b1;
-        if(testMiller_Rabin(n,t)==1)
-            break;      
-    }
-    return n;
+    long long int n, snt, B, tmp = pow(2,k)-1;
+    b1:     
+    n = rand()%(tmp+1);
+    B=rand();
+    while (1){
+        snt = rand()%(B+1);
+        if(isPrime(snt)!=1)
+             snt = rand()%(B+1);
+        else break;
+    }    
+    if(n%snt==0) goto b1;
+    if(testMiller_Rabin(n,t)==1)
+        return n;
+    else goto b1;      
 }
 int main() {
     srand((int)time(0)); 
     long long int k = 2+ rand()%(100+1-2);
     long long int t = rand()%(100+1);
-    long long int n = 3+ rand()%(20+1-3);
+    long long int n = 3+ rand()%(15+1-3);
     system("cls");
     printf("n = %lld\n",n);
     long long int A[n];
     long long int i=0;
     printf("A = [");
-    while(i<n){ //khởi tạo mảng A
+    for(long long int i=0;i<n;i++){
         A[i] = RANDOMSEARCH(k,t);
         printf("%6lld|",A[i]);
-        i++;
-        if(i==n)
-            break;
     }
     printf("]\n");
     for(long long int i=0;i<n-1;i++)
