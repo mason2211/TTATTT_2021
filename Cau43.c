@@ -1,24 +1,33 @@
 /*Câu 43. Cho N nhập vào từ bàn phím (0<N<1000), sinh một số nguyên tố p<100. Hãy viết chương trình tìm tất
  cả các số nguyên a<N sao cho a^p mod N là số nguyên tố.*/
- #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
-long long int mod(long long int a, long long int b, long long int c) {
-    return ((a % c) * (b % c)) % c;
-}
 long long int nhanBinhPhuongCoLap(long long int a, long long int k, long long int n) {
     long long int b = 1, A = a;
     if (k % 2 == 1)
         b = a;
     k /= 2;
     while (k > 0) {
-        A = mod(A, A, n);
+        A = (A*A)%n;
         if (k % 2 == 1)
-            b = mod(b, A, n);
+            b = (b*A)%n;
         k /= 2;
     }
     return b;
+}
+int isPrime(long long int n){
+    if (n <= 1)
+        return 0;
+    if (n == 2 || n == 3)
+        return 1;
+    if (n % 2 == 0 || n % 3 == 0)
+        return 0;
+    for (long long int i = 5; i <= sqrt(n); i+=6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return 0;
+    return 1;
 }
 int Miller_Rabin(long long int a, long long int n) {
     long long int x = n - 1, s=0, r;
@@ -29,9 +38,9 @@ int Miller_Rabin(long long int a, long long int n) {
     r = x;
     long long int y = nhanBinhPhuongCoLap(a, r, n);
     if (y != 1 && y != n - 1) {
-        int j = 1;
+        long long int j = 1;
         while (j <= s - 1 && y != n - 1) {
-            y = mod(y, y, n);
+            y = (y*y)%n;
             if (y == 1) 
                 return 0;
             j++;
@@ -50,62 +59,47 @@ int testMiller_Rabin(long long int n, long long int t){
             return 0;
         else 
             check = 1;
-        a++;
     }
     if(check==1)
         return 1;
 }
-int isPrime(long long int n){
-    if (n <= 1)
-        return 0;
-    if (n == 2 || n == 3)
-        return 1;
-    if (n % 2 == 0 || n % 3 == 0)
-        return 0;
-    for (long int i = 5; i <= sqrt(n); i+=6)
-        if (n % i == 0 || n % (i + 2) == 0)
-            return 0;
-    return 1;
-}
 long long int RANDOMSEARCH(long long int k, long long int t){
-    long long int n, snt, B;
-    long long int tmp = pow(2,k)-1;
-    b1:while(1){     
-        n = rand()%(tmp+1);
-        B=rand();
-        while (1){
-            snt = rand()%(B+1);
-            if(isPrime(snt)!=1)
-                snt = rand()%(B+1);
-            else break;
-        }    
-        if(n%snt==0)
-            goto b1;
-        if(testMiller_Rabin(n,t)!=1)
-            break;      
-    }
-    return n;
+    long long int n, snt, B, tmp = pow(2,k)-1;
+    b1:     
+    n = rand()%(tmp+1);
+    B=rand();
+    while (1){
+        snt = rand()%(B+1);
+        if(isPrime(snt)!=1)
+             snt = rand()%(B+1);
+        else break;
+    }    
+    if(n%snt==0) goto b1;
+    if(testMiller_Rabin(n,t)==1)
+        return n;
+    else goto b1;      
 }
 int main() {
-    srand((int)time(0));
+    srand((int)time(0)); 
+    long long int n; 
+    scanf("%lld",&n);
+    while (n<=0 || n>=1000){
+        printf("Nhap N thoa man dieu kien 0<N<1000: ");
+        scanf("%lld",&n);
+    }
     long long int k = rand()%(7+1);
-    long long int t = rand()%(10+1); 
-    long long int p = RANDOMSEARCH(k,t);
-    long long int n = rand()%(1000+1);
-    printf("N = %lld, p = %lld ",n,p);
-    int check=0;
-    long long int a=1;
-    while (1){
+    long long int t = rand()%(20+1);
+    long long int p= RANDOMSEARCH(k,t);
+    printf("p = %lld, n = %lld ",p,n);
+    long long int a=2, check=0;
+    while (a<n){
         long long int kq=nhanBinhPhuongCoLap(a,p,n); 
         if(isPrime(kq)==1){
             check=1;
-            printf("\na^p mod N = %lld, a = %lld ",kq,a);
+            printf("\nkq = %3lld, a = %3lld ",kq,a);
         }
-        a++;
-        if(a==n)
-            break;    
+        a++;   
     }     
-    if(check==0)
-        printf("Khong co so a thoa man!");        
+    if(check==0) printf("Khong co so a thoa man!");        
     return 0;
 }
