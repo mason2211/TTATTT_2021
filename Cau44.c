@@ -29,6 +29,7 @@ int main() {
     srand((int)time(0));
     long long int p = rand();
     long long int n = 1+ rand()%(20+1);
+    system("cls");
     printf("p = %lld, n = %lld\n",p,n);
     long long int A[n], B[n];
     printf("A = [");
