@@ -81,7 +81,9 @@ long long int RANDOMSEARCH(long long int k, long long int t){
 }
 int main() {
     srand((int)time(0)); 
-    long long int n; 
+    long long int n;
+    system("cls"); 
+    printf("Nhap N thoa man dieu kien 0<N<1000: ");
     scanf("%lld",&n);
     while (n<=0 || n>=1000){
         printf("Nhap N thoa man dieu kien 0<N<1000: ");
