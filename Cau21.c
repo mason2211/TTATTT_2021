@@ -24,11 +24,13 @@ int main(){
         if(check[i]==1)
             for(long long int j = 2*i; j<b; j+=i)
                 check[j]=0;
-    for (long long int x = a; x < b; x++)
+    for (long long int x = a; x <= b; x++)
         if(check[countPrime(x,check)]==1){
             d++;
             //printf("\nSo %lld la sieu nguyen to vi co %lld SNT nho hon %lld",x,countPrime(x,check),x);
         }
-    printf("So cac so sieu nguyen to trong khoang tren la: %lld",d);
+    if(d!=0)
+        printf("So cac so sieu nguyen to trong khoang tren la: %lld",d);
+    else printf("Khong co so sieu nguyen to nao trong khoang tren");
     return 0;
 }
