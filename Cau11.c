@@ -4,6 +4,10 @@
 int main(){
     long long int n,d=0;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     long long int check[n+1]; //Sàng NT
     for(long long int i = 2 ; i <= n ; i++)
         check[i]=1;
