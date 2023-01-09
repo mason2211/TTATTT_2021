@@ -3,12 +3,6 @@ Trong trường hợp nào thì thuật toán Boyer-Moore được xem là cải
 #include<stdio.h>
 #include<string.h>
 # define CHARS 256
-// int lastOccurrence(char P[],char x){
-//     for(int i= strlen(P)-1; i>=0; i--)
-//         if(P[i]==x)
-//             return i;
-//     return -1;
-// }
 void LastOccurrence( char P[], int size, int badchar[CHARS])
 {
     int i;
