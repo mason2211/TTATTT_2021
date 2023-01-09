@@ -23,10 +23,17 @@ long long int daoNguoc(long long int n){
     return n1;    
 }
 int main(){
-    long long int n;
+    long long int n, check=0;;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     for(long long int i=0;i<n;i++)
-        if(isPrime(i)==1 && isPrime(daoNguoc(i))==1)
+        if(isPrime(i)==1 && isPrime(daoNguoc(i))==1){
+            check=1;
             printf("%lld ",i);
+        }
+    if(!check) printf("Khong co so emirp < %lld",n);   
     return 0;
 }
