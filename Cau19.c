@@ -18,17 +18,15 @@ int isPrime(long int n){
 }
 int main()
 {
-    long int m, l, r = 100,check=0;
+    long int m, l, r = 100,check=0, A, B, C;
     scanf("%ld%ld", &m, &l);
     while (m >= l || m < 0 || l <= 0)
     {
         printf("Nhap 0 <= m < l!\n");
         scanf("%ld%ld", &m, &l);
     }
-    srand((int)time(0));
-    long int A =(rand() % r + 1);
-    long int B =(rand() % r + 1);
-    long int C =(rand() % r + 1);
+    printf("Nhap lan luot A, B, C: ");
+    scanf("%ld%ld%ld",&A,&B,&C);
     printf("A = %ld; B = %ld; C = %ld\n", A, B, C);
     for (long int x = m; x < l; x++){
         if (isPrime(A * x * x + B * x + C) == 1){
