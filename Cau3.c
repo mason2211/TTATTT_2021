@@ -12,6 +12,10 @@ Và từ đó: N+p+s-q-k = 24+60+8-5-2=85;*/
 int main(){
     long long int n, k = 0, q = 0, p = 0, s = 0;
     scanf("%lld", &n);
+    while (n<=0){
+        printf("Nhap lai N thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     long long int check[n+1]; //Sàng NT
     for(long long int i = 2 ; i <= n ; i++)
         check[i]=1;
@@ -29,6 +33,6 @@ int main(){
             }
         }
     }
-    printf("N+p+s-q-k = %lld",n+p+s-q-k);
+    printf("N+p+s-q-k = %lld + %lld + %lld - %lld - %lld = %lld",n,p,s,q,k,n+p+s-q-k);
     return 0;
 }
