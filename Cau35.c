@@ -40,21 +40,22 @@ int Miller_Rabin(long long int a, long long int n) {
 }
 int main() {
     long long int n, t, s = 0, r, a=2, check = 0;
-    srand((int)time(0));
-    n = rand();
-    t = 10+rand()%(20+1-10);
+    //srand((int)time(0));
+    scanf("%lld%lld",&n,&t);
+    //t = 10+rand()%(20+1-10);
     printf("Kiem tra so nguyen n=%lld trong %lld lan:\n",n,t);
     while(t-->0){
-        a = 2+rand()%(n+1-4);
+        //a = 2+rand()%(n+1-4);
         int r = Miller_Rabin(a,n);
         if(r!=1){
-            //printf("Co so a=%d: Hop so\n",a);
+            printf("Co so a=%d: Hop so\n",a);
             break;
         } 
         else {
-            //printf("Co so a=%d: Nguyen to\n",a);
+            printf("Co so a=%d: Nguyen to\n",a);
             check = 1;
         }
+        a++;
     }
     if(check==1)
         printf("%d co the la nguyen to",n);
