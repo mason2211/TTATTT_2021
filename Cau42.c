@@ -74,7 +74,7 @@ long long int RANDOMSEARCH(long long int k, long long int t){
              snt = rand()%(B+1);
         else break;
     }    
-    if(n%snt==0) goto b1;
+    if(n%snt==0 && n%2==0) goto b1;
     if(testMiller_Rabin(n,t)==1)
         return n;
     else goto b1;      
@@ -85,7 +85,7 @@ int main() {
     long long int t = rand()%(20+1); 
     long long int p= RANDOMSEARCH(k,t);
     long long int q= RANDOMSEARCH(k,t);
-    printf("p = %lld, q = %lld ",p,q);
+    printf("p = %3lld || q = %3lld ",p,q);
     long long int a=2, check=0;
     while (a<100){
         long long int kq=nhanBinhPhuongCoLap(a,p,q); 
