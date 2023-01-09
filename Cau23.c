@@ -22,7 +22,7 @@ int main(){
         printf("Nhap 0 <= A < B!\n");
         scanf("%lld%lld", &a, &b);
     }
-    for(long int i = a; i<b;i++)
+    for(long int i = a; i<=b;i++)
         if(isPrime(i)==1)
             d+=i;
     if(isPrime(d)==1)
