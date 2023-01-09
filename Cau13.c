@@ -15,16 +15,23 @@ int isPrime(long long int n){
     return 1;
 }
 int main(){
-    long  int n, i, j;
+    long  int n, i, j,check=0;;
     scanf("%ld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     for(i=2;i<=n;i++){
         if(isPrime(i)==1)
             for(j=i+1;j<=n;j++)
                 if(isPrime(j)==1)
-                    if(isPrime(i+j)==1 && isPrime(j-i)==1)  
+                    if(isPrime(i+j)==1 && isPrime(j-i)==1){
                         printf("2 SNT can tim la %d va %d",i,j);
+                        check=1;
+                    }    
                 break;
         break;
     }
+    if(!check) printf("Khong co cap so nao thoa man");
     return 0;
 }
