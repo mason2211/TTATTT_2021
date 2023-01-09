@@ -28,17 +28,23 @@ int main(){
     printf("Nhap so phan tu cua mang: ");
     scanf("%lld",&n);
     long long int a[n];
-    srand((int)time(0));
-    for(long long int i=0;i<n;i++){
-        a[i] = rand();
-        printf("%lld ",a[i]);
-    }   
+    //srand((int)time(0));
+    for(long long int i=0;i<n;i++)
+        scanf("%lld",&a[i]);
+    // for(long long int i=0;i<n;i++){
+    //     a[i] = rand();
+    //     printf("%lld ",a[i]);
+    // }
     printf("\n");  
     for(long long int i=0;i<n-1;i++)
-        for(long long int j=i+1;j<n;j++)
-            if(isPrime(GCD(a[i],a[j]))==1){
+        for(long long int j=i+1;j<n;j++){
+            long long int gcd = GCD(a[i],a[j]);
+            if(isPrime(gcd)==1){
                 d+=1;
-                printf("a[%lld], a[%lld] , GCD(a[%lld],a[%lld]) = %lld\n",i,j,i,j,GCD(a[i],a[j]));
-            }
-    printf("Co tat ca %lld cap so thoa man!",d);          
+                printf("a[%lld], a[%lld] , GCD(a[%lld],a[%lld]) = %lld\n",i,j,i,j,gcd);
+            }       
+        }
+    if(d!=0) 
+        printf("Co tat ca %lld cap so thoa man!",d);          
+    else printf("Khong co cap so nao thoa man!");
 }
