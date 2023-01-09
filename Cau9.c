@@ -5,6 +5,10 @@ phím.*/
 int main(){
     long long int n,d=0;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     long long int check[n+1]; //Sàng NT
     for(long long int i = 2 ; i <= n ; i++)
         check[i]=1;
@@ -15,6 +19,8 @@ int main(){
     for(long long int i=2;i<=n;i++)
         if(check[i]==1)
             d++;
-    printf("%lld ",d);
+    if(d!=0)
+        printf("Co %lld SNT <= %lld",d,n);
+    else printf("Khong co SNT nao <= %lld",n);
     return 0;
 }
