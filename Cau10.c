@@ -16,6 +16,10 @@ int isPrime(long long int n){
 int main(){
     long long int n, d1=0, d2=0;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     for(long long int i=1;i<=n;i++)
         if(n%i==0){
             d1+=1;
