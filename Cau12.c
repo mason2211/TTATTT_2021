@@ -5,6 +5,10 @@ nhỏ hơn hoặc bằng N (với N được nhập vào từ bàn phím).*/
 int main(){
     long long int n, t=0, x, i, j;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     long long int check[n+1]; //Sàng NT
     for(long long int i = 2 ; i <= n ; i++)
         check[i]=1;
@@ -16,6 +20,7 @@ int main(){
     for(i=2;i<=n;i++)
         if(check[i]==1)
             pr[t++]=i;
+    if(t<3) printf("Khong co 4 SNT lien tiep thoa man de bai!");
     for(i=0;i<=t-3;i++){
         x = pr[i] + pr[i+1] + pr[i+2] + pr[i+3];
         if (x>n){
