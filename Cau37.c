@@ -11,7 +11,7 @@ int soSanhChuoi(char P[], int j, int i){
         return 1;
     return 0;
 }
-int kiemTra(char P[], int j){   // kích thước của tiền tố = hậu tố
+int kiemTra(char P[], int j){   // kích thước dai nhất của tiền tố = hậu tố
     for (int i = j - 1; i >= 0; i--)
         if (soSanhChuoi(P, j, i) == 1)
             return i;
