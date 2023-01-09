@@ -9,10 +9,17 @@ long long int demUoc(long long int n){
     return d;
 }
 int main(){
-    long long int n;
+    long long int n,check=0;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     for(long long int i=2;i<=n;i++)
-        if(demUoc(i)==4)
+        if(demUoc(i)==4){
+            check=1;
             printf("%lld ",i);
+        }
+    if(check==0) printf("Khong co so Qprime thoa man < %lld",n);      
     return 0;
 }
