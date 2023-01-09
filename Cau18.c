@@ -1,92 +1,38 @@
-/*Câu 18. Áp dụng thuật toán đã được học để viết chương trình tính tổng của hai số nguyên lớn,
-hiển thị dưới mạng mảng và dạng số nguyên.*/
-#include<stdio.h>
-#include<math.h>
-void chuyenSoNguyenLon(int arr[100], int W, long long int a, int t){
-    for(int i = t-1 ; i>=0; i--){
-        int z = pow(2,W*i);
-        arr[i]=a/z;
-        a = a%z;
-    }
+/*Câu 17. Viết chương trình tìm số nguyên dương x nhỏ nhất và nhỏ hơn N nhập từ bàn phím sao cho giá trị 
+của biểu thức 𝐴𝑥^2 + 𝐵𝑥 + 𝐶 là một số nguyên tố với A,B,C là các số nguyên nhập vào từ bàn phím*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <time.h>
+int isPrime(long long int n){
+    if (n <= 1)
+        return 0;
+    if (n == 2 || n == 3)
+        return 1;
+    if (n % 2 == 0 || n % 3 == 0)
+        return 0;
+    for (long int i = 5; i <= sqrt(n); i+=6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return 0;
+    return 1;
 }
-long long int mangThanhSo(int arr[100],int W,int t){
-    long long int p=0;
-    for(int i=0;i<t;i++){
-        long long int h=pow(2,W*i);
-        p+= h*arr[i];
+int main(){
+    long int n, r=100,check=0, A, B, C;
+    scanf("%ld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%ld",&n);
     }
-    return p;
-}
-int cong(int a[100],int b[100],int c[100],int t,int W){
-    int e = 0;
-    for(int i =0; i<t; i++){
-        int w=a[i]+b[i]+e;
-        int h = pow(2,W);
-        if(w>=h){
-            e=1;
-            c[i]=w%h;
-        }
-        else{
-            e=0;
-            c[i]=w%h;
-        }
+    printf("Nhap lan luot A, B, C: ");
+    scanf("%ld%ld%ld",&A,&B,&C);
+    printf("A = %ld; B = %ld; C = %ld\n",A, B, C);
+    for(long int x=1;x<n;x++){
+        if(isPrime(A*x*x + B*x + C)==1){
+            printf("x = %ld",x);
+            check=1;
+            break;
+        }     
     }
-    return e;
-}
-int tru(int a[100],int b[100],int c[100],int t,int W){
-    int e = 0;
-    for(int i =0; i<t; i++){
-        int w=a[i]-b[i]-e;
-        int h = pow(2,W);
-        if(w<0){
-            c[i]=h+w;
-            e=1;
-        }
-        else if(w>=h){
-            c[i] =w%h;
-            e=1;
-        }
-        else{
-            e=0;
-            c[i]=w%h;
-        }
-    }
-    return e;
-}
-int main()
-{
-    long long int p,a1,a2,t,e,i;
-    int a[100],b[100],c[100],P[100],W;
-    scanf("%lld%d%lld%lld",&p,&W,&a1,&a2);
-    t = ceil((float)ceil(log(p)/log(2))/W);
-    chuyenSoNguyenLon(a,W,a1,t);
-    chuyenSoNguyenLon(b,W,a2,t);
-    chuyenSoNguyenLon(P,W,p,t);
-
-    printf("P = [");
-    for(int i = t-1 ; i >=0 ; i--)
-        printf("%d ",P[i]);
-    printf("]");
-
-    cong(a,b,c,t,W);
-    e = cong(a,b,c,t,W);
-    printf ("\nC = A+B =(%d, [",e);
-    for(int i=t-1;i>=0;i--)
-        printf("%d ",c[i]);
-    printf(")]");
-
-    if(e==1)
-        tru(c,P,c,t,W);
-    else
-        for(i = t-1 ; i >= 0 ; i--)
-            if(c[i]>=P[i]){
-                e = tru(c,P,c,t,W);
-                break;
-            }
-            
-    printf("\nTren truong Fp: C = [");
-    for(int i = t-1 ; i >=0 ; i--)
-        printf("%d ",c[i]);
-    printf("]");
-    printf("\nC = %lld",mangThanhSo(c,W,t));
+    if(!check) printf("Khong co x thoa man!!!");
+    return 0;
 }
