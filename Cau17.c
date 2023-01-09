@@ -1,5 +1,5 @@
-/*Câu 16. Viết chương trình tìm các số nguyên tố từ một mảng sinh ngẫu nhiên có kích thước N,
-với N nhập vào từ bàn phím*/
+/*Câu 17. Viết chương trình tìm số nguyên dương x nhỏ nhất và nhỏ hơn N nhập từ bàn phím sao cho giá trị 
+của biểu thức 𝐴𝑥^2 + 𝐵𝑥 + 𝐶 là một số nguyên tố với A,B,C là các số nguyên nhập vào từ bàn phím*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -17,25 +17,22 @@ int isPrime(long long int n){
     return 1;
 }
 int main(){
-    long int n,r,check=0;
+    long int n, r=100,check=0, A, B, C;
     scanf("%ld",&n);
     while(n<=0){
         printf("Nhap n thoa man de bai: ");
         scanf("%ld",&n);
     }
-    long int a[n];
-    srand((int)time(0));
-    for(long int i = 0; i < n; ++i){
-        a[i] = rand();
-        printf("%ld ",a[i]);
-    }
-    printf("\n");
-    for(long int i = 0; i < n; ++i){
-        if(isPrime(a[i])==1){
-            printf("%ld ",a[i]);
+    printf("Nhap lan luot A, B, C: ");
+    scanf("%ld%ld%ld",&A,&B,&C);
+    printf("A = %ld; B = %ld; C = %ld\n",A, B, C);
+    for(long int x=1;x<n;x++){
+        if(isPrime(A*x*x + B*x + C)==1){
+            printf("x = %ld",x);
             check=1;
-        }
+            break;
+        }     
     }
-    if(!check) printf("Khong co SNT nao trong day tren");
+    if(!check) printf("Khong co x thoa man!!!");
     return 0;
 }
