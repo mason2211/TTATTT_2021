@@ -51,7 +51,9 @@ void tryWith(int check, int start, int sum) {
 	}
 }
 int main() {
-    printf("Nhap lan luot N va M: ");
+    // printf("Nhap lan luot N va M: ");
+	// scanf("%d%d",&n,&m);
+	printf("Nhap lan luot N va M: ");
 	scanf("%d%d",&n,&m);
 	Eratosthenes(n);
 	tryWith(1, 2, 0);
