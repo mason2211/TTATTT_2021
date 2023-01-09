@@ -12,16 +12,19 @@ int gcd(int a, int b){
     return gcd(b, a % b);
 }
 int main(){
-    int m, n;
+    int m, n,D;
     scanf("%d%d", &m, &n);
-    while (m>=n || m < 0 || n<=0 || m >= 1000 || n>=1000){
-        printf("Nhap 0 <= m < n < 1000\n");
+    while (m>=n || m <= 0 || n<=0 || m >= 1000 || n>=1000){
+        printf("Nhap 0 < m < n < 1000\n");
         scanf("%ld%ld", &m, &n);
     }
-    srand((int)time(0));
-    int D = (rand()%100+1);
+    scanf("%d", &D);
+    while (D < 0 || D >= 1000){
+        printf("Nhap 0 < D < 1000\n");
+        scanf("%d", &D);
+    }
     printf("Random UCLN = %d",D); 
-    if(n<D || n/2<D)
+    if(n/2<D)
             printf("\n==> Khong co cap so nao!");
     else
         for(int i=m;i<n;i++){
