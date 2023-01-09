@@ -5,7 +5,7 @@ int main(){
     long long int a,b,d=0;
     scanf("%lld%lld",&a,&b);
     while (a==b || a>b || a<0 || b<0){
-        printf("Nhap lai A, B thoa man 0 < A < B: ");
+        printf("Nhap lai A, B thoa man 0 <= A < B: ");
         scanf("%lld%lld",&a,&b);
     }
     long long int check[b+1]; //Sàng NT
