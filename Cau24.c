@@ -31,7 +31,7 @@ int main(){
     }   
     for(long long int i=1;i<n1;i++)
         for(long long int j=i+1;j<n1;j++)
-            if(isPrime(S1[i]+S2[j])==1 && (S1[i]+S2[j])>a && (S1[i]+S2[j])<b){
+            if(isPrime(S1[i]+S2[j])==1 && (S1[i]+S2[j])>=a && (S1[i]+S2[j])<=b){
                 d+=1;
                 printf("%lld + %lld = %lld\n", S1[i], S2[j], S1[i]+S2[j]);
             }
