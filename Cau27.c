@@ -24,12 +24,12 @@ long long int GCD(long long int a, long long int b){
 int main(){
     long long int a, b, d=0;
     scanf("%lld%lld", &a, &b);
-    while (a >= b || a < 0 || b <= 0){
+    while (a >= b || a < 0 || b <= 0 || b>=1000){
         printf("Nhap 0 < A < B <1000!\n");
         scanf("%lld%lld", &a, &b);
     }   
-    for(long long int i=a;i<b;i++)
-        for(long long int j=i+1;j<b;j++)
+    for(long long int i=a;i<=b-1;i++)
+        for(long long int j=i+1;j<=b;j++)
             if(isPrime(GCD(i,j))==1)
                 printf("a = %lld, b = %lld, GCD(a,b) = %lld\n",i,j,GCD(i,j));
     return 0;
