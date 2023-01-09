@@ -24,20 +24,25 @@ long long int GCD(long long int a, long long int b){
     return GCD(b,a%b);
 }
 int main(){
-    long long int n;
+    long long int n, check=0;
     printf("Nhap so phan tu cua mang: ");
     scanf("%lld",&n);
     long long int a[n];
-    srand((int)time(0));
-    for(long long int i=0;i<n;i++){
-        a[i] = rand();
-        printf("%lld ",a[i]);
-    }   
+    // srand((int)time(0));
+    // for(long long int i=0;i<n;i++){
+    //     a[i] = rand();
+    //     printf("%lld ",a[i]);
+    // }   
+    for(long long int i=0;i<n;i++)
+        scanf("%lld",&a[i]);
     printf("\n");  
     for(long long int i=0;i<n-1;i++)
         for(long long int j=i+1;j<n;j++){
             long long int gcd = GCD(a[i],a[j]);
-            if(isPrime(gcd)==1)
+            if(isPrime(gcd)==1){
+                check=1;
                 printf("a[%lld], a[%lld] , GCD(a[%lld],a[%lld]) = %lld\n",i,j,i,j,gcd);
+            }       
         }
+    if(!check) printf("Khong co cap so nao thoa man");
 }
