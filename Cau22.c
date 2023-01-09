@@ -29,8 +29,8 @@ int main(){
         printf("Nhap 0 <= L < R!\n");
         scanf("%lld%lld", &l, &r);
     }
-    for (long long int i = l; i < r-1; i++)
-        for (long long int j = i+1; j < r; j++)
+    for (long long int i = l; i <= r-1; i++)
+        for (long long int j = i+1; j <= r; j++)
             printf("\nF ( %lld ) * F ( %lld ) = %lld",i,j,tinh(i,j));
     return 0;
 }
