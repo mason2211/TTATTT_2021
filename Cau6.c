@@ -12,9 +12,13 @@ long long int tongUoc(long long int a){
 int main(){
     long long int n,j, check=0;
     scanf("%lld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%lld",&n);
+    }
     for(long long int i=1;i<=n;i++){
         j = tongUoc(i);
-        if(tongUoc(j)==i && j>i && j<n){ // (a>i) để loại trường hợp i j đảo vị trí cho nhau
+        if(tongUoc(j)==i && j>i && j<n){ // (j>i) để loại trường hợp i j đảo vị trí cho nhau
             printf("%lld %lld\n",i,j);
             check=1;
         }
