@@ -81,27 +81,31 @@ long long int RANDOMSEARCH(long long int k, long long int t){
 }
 int main() {
     srand((int)time(0)); 
-    long long int n;
-    system("cls"); 
-    printf("Nhap N thoa man dieu kien 0<N<1000: ");
+    long long int n,kq=0;
     scanf("%lld",&n);
     while (n<=0 || n>=1000){
         printf("Nhap N thoa man dieu kien 0<N<1000: ");
         scanf("%lld",&n);
     }
-    long long int k = rand()%(7+1);
+    long long int k = rand()%(6+1);
     long long int t = rand()%(20+1);
     long long int p= RANDOMSEARCH(k,t);
     printf("p = %lld, n = %lld ",p,n);
     long long int a=2, check=0;
+    long long int checkP[n+1]; //Sàng NT
+    for(long long int i = 2 ; i < n ; i++)
+        checkP[i]=1;
+    for(long long int i = 2 ; i < n ; i++) 
+        if(checkP[i]==1)
+            for(long long int j = 2*i; j<n; j+=i)
+                checkP[j]=0;
     while (a<n){
-        long long int kq=nhanBinhPhuongCoLap(a,p,n); 
-        if(isPrime(kq)==1){
-            check=1;
+        kq=nhanBinhPhuongCoLap(a,p,n); 
+        if(checkP[kq]==1){
             printf("\nkq = %3lld, a = %3lld ",kq,a);
         }
         a++;   
     }     
-    if(check==0) printf("Khong co so a thoa man!");        
+    if(kq==0) printf("Khong co so a thoa man!");        
     return 0;
 }
