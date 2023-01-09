@@ -19,6 +19,10 @@ int isPrime(long long int n){
 int main(){
     long int n,r,check=0;
     scanf("%ld",&n);
+    while(n<=0){
+        printf("Nhap n thoa man de bai: ");
+        scanf("%ld",&n);
+    }
     long int a[n];
     srand((int)time(0));
     for(long int i = 0; i < n; ++i){
